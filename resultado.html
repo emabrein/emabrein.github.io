@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultado del Test de Personalidad</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1 id="resultTitle"></h1>
+        <p id="resultDescription"></p>
+    </div>
+    <script>
+        // Función para obtener parámetros de la URL
+        function getParameterByName(name) {
+            const url = window.location.href;
+            name = name.replace(/[\[\]]/g, '\\$&');
+            const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)');
+            const results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, ' '));
+        }
+
+        // Obtener el resultado de la URL
+        const result = getParameterByName('result');
+
+        // Variables para almacenar el título y la descripción del resultado
+        let title = '';
+        let description = '';
+
+        // Determinar el contenido según el resultado
+        switch (result) {
+            case 'a':
+                title = 'Personalidad Mar (Color Celeste)';
+                description = 'Eres tranquilo/a y soñador/a, y te encanta la sensación de libertad y la vastedad del océano.';
+                document.body.style.backgroundColor = '#ADD8E6';
+                break;
+            case 'b':
+                title = 'Personalidad Flor (Color Violeta)';
+                description = 'Eres creativo/a y delicado/a, y disfrutas de la belleza y el crecimiento constante de las flores.';
+                document.body.style.backgroundColor = '#EE82EE';
+                break;
+            case 'c':
+                title = 'Personalidad Árbol (Color Verde)';
+                description = 'Eres fuerte y protector/a, y te sientes en casa rodeado/a de la naturaleza y la solidez de los árboles.';
+                document.body.style.backgroundColor = '#98FB98';
+                break;
+            case 'd':
+                title = 'Personalidad Corazón (Color Rosa)';
+                description = 'Eres cariñoso/a y empático/a, y valoras profundamente las relaciones y el bienestar de los demás.';
+                document.body.style.backgroundColor = '#FFC0CB';
+                break;
+            default:
+                title = 'Resultado no definido';
+                description = 'No se pudo determinar tu personalidad. Por favor, vuelve a realizar el test.';
+        }
+
+        // Mostrar el resultado en la página
+        document.getElementById('resultTitle').innerText = title;
+        document.getElementById('resultDescription').innerText = description;
+    </script>
+</body>
+</html>
